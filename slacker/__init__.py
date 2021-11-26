@@ -50,7 +50,7 @@ class BaseAPI(object):
 
     def _request(self, method, api, **kwargs):
         if self.token:
-            kwargs.setdefault('params', {})['token'] = self.token
+            kwargs.setdefault('headers', {})['Authorization'] = 'Bearer %s' % self.token
 
         response = method(API_BASE_URL.format(api=api),
                           timeout=self.timeout,
